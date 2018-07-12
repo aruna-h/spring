@@ -57,7 +57,7 @@ public class JWTFilter extends GenericFilterBean {
 	}
 
 	public boolean allowRequestWithoutToken(HttpServletRequest request) {
-		if (request.getRequestURI().contains("/register")) {
+		if (request.getRequestURI().contains("/register") || request.getRequestURI().contains("/login")) {
 			return true;
 		}
 		return false;

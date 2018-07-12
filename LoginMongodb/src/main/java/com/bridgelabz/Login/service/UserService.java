@@ -2,6 +2,7 @@ package com.bridgelabz.Login.service;
 
 import java.util.Optional;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,21 +24,34 @@ public class UserService {
 		this.userRepository = userRepository;
 		this.tokenService = tokenService;
 	}
+	
+		
+	
 
+	/**
+	 * to verify the userName and password 
+	 * @param user
+	 * @return
+	 */
 	public boolean verifyUser(User user) {
 		System.out.println("Verify user");
 		String userName = user.getUserName();
-		if (userRepository.getByEmail(userName).isPresent()) {
-			System.out.println("Verify user email");
-			Optional<User> user1 = userRepository.getByEmail(userName);
-			if (user1.get().getPassword().equals(user.getPassword()))
+		if (userRepository.getByUserName(user.getUserName()).isPresent()) {
+			System.out.println("Verify username ");
+			Optional<User> user1 = userRepository.getByUserName(userName);
+			if (user1.get().getPassword().equals(user.getPassword())) {
 				System.out.println("Verify user password");
 			return true;
+			}
 		}
 		return false;
-
 	}
 
+	/**
+	 * to verify the email already present or not
+	 * @param user
+	 * @return
+	 */
 	public boolean verifyEmail(User user) {
 		System.out.println("Verify email");
 		System.out.println(user.getEmail());
@@ -49,10 +63,11 @@ public class UserService {
 		return false;
 	}
 
-	public Optional<User> getUser(String userId) {
-		return userRepository.findById(userId);
-	}
-
+	/**
+	 * method to save the data
+	 * @param user
+	 * @return
+	 */
 	public String saveUser(User user) {
 		System.out.println("saveUser");
 		User savedUser = userRepository.save(user);

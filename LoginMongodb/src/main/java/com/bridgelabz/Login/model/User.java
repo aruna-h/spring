@@ -2,6 +2,7 @@ package com.bridgelabz.Login.model;
 
 import org.springframework.data.annotation.Id;
 
+
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
@@ -12,11 +13,17 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class User {
 	@Id
 	private String id;
+	
 	private String userName;
+	
 	private String password;
+	
 	private String firstName;
+	
 	private String lastName;
+	
 	private String mobNumber;
+	
 	private String email;
 
 	public User() {

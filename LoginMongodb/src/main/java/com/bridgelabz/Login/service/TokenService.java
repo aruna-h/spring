@@ -19,8 +19,13 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 @Service
 public class TokenService {
 
-	public static final String TOKEN_SECRET = "yaaa";
+	public static final String TOKEN_SECRET = "what";
 
+	/**
+	 * method of creating token
+	 * @param string
+	 * @return
+	 */
 	public String createToken(String string) {
 		try {
 			Algorithm algorithm = Algorithm.HMAC256(TOKEN_SECRET);
@@ -54,6 +59,11 @@ public class TokenService {
 		}
 	}
 
+	/**
+	 * checking whether token is valid or not
+	 * @param token
+	 * @return
+	 */
 	public boolean isTokenValid(String token) {
 		String userId = this.getUserIdFromToken(token);
 		return userId != null;
